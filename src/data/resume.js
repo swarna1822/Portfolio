@@ -4,7 +4,7 @@ export const profile = {
   phone: '+91 7995347442',
   email: 'swarnakumark48@gmail.com',
   linkedin: 'https://www.linkedin.com/in/koppala-swarna-kumar-131919195',
-  github: 'https://github.com/swarnakumark48',
+  github: 'https://github.com/swarna1822',
   location: 'Bengaluru, India',
   summary:
     'Frontend Engineer with nearly 4 years of experience building scalable web apps with React.js, Angular, TypeScript, and JavaScript (ES6+). I design reusable UI systems, integrate REST APIs, and ship maintainable, accessible interfaces — translating business requirements into fast, reliable product experiences.',
