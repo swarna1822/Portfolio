@@ -131,23 +131,28 @@ export default function App() {
           </h2>
           <div className="about-grid">
             <article className="card">
-              <h3>What I ship</h3>
+              <h3>About Me</h3>
               <p>
-                Component-driven React and Angular UIs, REST integrations, and performance work
-                that shows up in load time, rendering, and how quickly a bug can be reproduced.
+                I'm a Frontend Engineer with nearly 4 years of experience
+                building responsive, user-friendly web applications using
+                React, Angular, and TypeScript. I've worked on production
+                applications, REST API integrations, reusable components,
+                and performance improvements. Outside work, I build personal
+                projects to explore new technologies and strengthen my skills.
               </p>
+
               <ul className="stat-row">
                 <li>
                   <strong>~4 yrs</strong>
-                  <span>frontend</span>
+                  <span>Experience</span>
                 </li>
                 <li>
-                  <strong>40%</strong>
-                  <span>faster review page</span>
+                  <strong>React</strong>
+                  <span>Primary stack</span>
                 </li>
                 <li>
-                  <strong>20%</strong>
-                  <span>faster first load</span>
+                  <strong>2+</strong>
+                  <span>Personal projects</span>
                 </li>
               </ul>
             </article>
@@ -211,9 +216,9 @@ export default function App() {
             ))}
           </div>
         </section>
-         <section className="plate" id="projects">
+        <section className="plate" id="projects">
           <h2>
-            <span className="fn">F4</span> Personal projects 
+            <span className="fn">F4</span> Personal projects
           </h2>
           <div className="products">
             {projects.map((product) => (
