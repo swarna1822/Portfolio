@@ -80,7 +80,7 @@ export const projects = [
     name: 'FlowBoard',
     tag: 'Move work forward',
     stack: 'React · TypeScript · Redux · Material UI',
-    live_demo: 'flow-board-tau-snowy.vercel.app',
+    live_demo: 'https://flow-board-tau-snowy.vercel.app',
     points: [
       "Built a multi-project work-status tracker using React 19, TypeScript, Redux, Material UI, and React Router, deployed on Vercel",
       "Developed drag-and-drop Kanban boards with search, assignee, epic, and due-date filters, a backlog view, issue detail modal with comments and status updates, and issue creation",
