@@ -8,6 +8,7 @@ import {
   products,
   profile,
   skillRows,
+  projects,
 } from './data/resume.js'
 
 function scrollToId(id) {
@@ -210,10 +211,36 @@ export default function App() {
             ))}
           </div>
         </section>
+         <section className="plate" id="projects">
+          <h2>
+            <span className="fn">F4</span> Personal projects 
+          </h2>
+          <div className="products">
+            {projects.map((product) => (
+              <article className="key-card" key={product.name}>
+                <p className="tag">{product.tag}</p>
+                <h3>{product.name}</h3>
+                <p className="stack">{product.stack}</p>
+                <a
+                  href={product.live_demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Live Demo
+                </a>
+                <ul>
+                  {product.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
 
         <section className="plate" id="skills">
           <h2>
-            <span className="fn">F4</span> Skill keyboard
+            <span className="fn">F5</span> Skill keyboard
           </h2>
           <div className="keyboard" role="list">
             {skillRows.map((row, rowIndex) => (
@@ -245,7 +272,7 @@ export default function App() {
 
         <section className="plate" id="contact">
           <h2>
-            <span className="fn">F5</span> Get in touch
+            <span className="fn">F6</span> Get in touch
           </h2>
           <p className="lede lede--tight">
             Open to frontend roles and product-minded UI work. Hit a key below.

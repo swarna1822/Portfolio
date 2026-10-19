@@ -15,8 +15,9 @@ export const navKeys = [
   { id: 'about', legend: 'F1', sub: 'About' },
   { id: 'experience', legend: 'F2', sub: 'Work' },
   { id: 'products', legend: 'F3', sub: 'Apps' },
-  { id: 'skills', legend: 'F4', sub: 'Keys' },
-  { id: 'contact', legend: 'F5', sub: 'Hire' },
+  { id: 'projects', legend: 'F4', sub: 'projects' },
+  { id: 'skills', legend: 'F5', sub: 'Keys' },
+  { id: 'contact', legend: 'F6', sub: 'Hire' },
 ]
 
 export const experience = [
@@ -70,6 +71,34 @@ export const products = [
       'Tenant-specific configuration and feature-based customizations.',
       'Hierarchical sorting for Collection, Category, and Product via AG Grid Tree Data.',
       'Complex order cases: multiple POs, pricing, discounts, line-item changes, and validation.',
+    ],
+  },
+]
+
+export const projects = [
+  {
+    name: 'FlowBoard',
+    tag: 'Move work forward',
+    stack: 'React · TypeScript · Redux · Material UI',
+    live_demo: 'flow-board-tau-snowy.vercel.app',
+    points: [
+      "Built a multi-project work-status tracker using React 19, TypeScript, Redux, Material UI, and React Router, deployed on Vercel",
+      "Developed drag-and-drop Kanban boards with search, assignee, epic, and due-date filters, a backlog view, issue detail modal with comments and status updates, and issue creation",
+      "Implemented per-project role-based access (Admin, Manager, Developer, Viewer) using Redux selectors, with project settings for columns, members, and roles",
+      "Built login, signup with a password-strength meter, and forgot-password flows using React Hook Form validation, protected routes, and lazy-loaded pages",
+      "Added daily team check-ins, notifications, and a reports page with a weekly completion chart and overdue issues"
+    ]
+  },
+  {
+    name: 'Pebble',
+    tag: 'AI chat app',
+    stack: 'React · TypeScript · Redux · Material UI',
+    live_demo: 'https://pebble-ai-chat-app.vercel.app',
+    points: [
+      "Built a browser-based AI chat app using React 18, TypeScript, and Material UI, supporting streamed responses from Google Gemini, Groq, and OpenRouter through OpenAI-compatible APIs",
+      "Implemented response streaming using the Fetch API and ReadableStream, with Stop (AbortController), Regenerate, and error handling for invalid API keys, rate limits, and outdated model names",
+      "Rendered Markdown content with tables, links, and syntax-highlighted code blocks with a copy button using react-markdown, remark-gfm, and highlight.js",
+      "Added chat history persistence using localStorage, demo mode with simulated replies, light/dark/auto themes, keyboard shortcuts, and a responsive layout with a mobile drawer"
     ],
   },
 ]
