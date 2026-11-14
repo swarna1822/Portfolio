@@ -10,6 +10,7 @@ export function Keycap({
   children,
   className = '',
   type = 'button',
+  current = false,
 }) {
   const classes = [
     'keycap',
@@ -39,6 +40,7 @@ export function Keycap({
         className={classes}
         href={href}
         onClick={onClick}
+        aria-current={current ? 'true' : undefined}
         {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}
       >
         {inner}
@@ -47,7 +49,7 @@ export function Keycap({
   }
 
   return (
-    <button className={classes} type={type} onClick={onClick}>
+    <button className={classes} type={type} onClick={onClick} aria-current={current ? 'true' : undefined}>
       {inner}
     </button>
   )

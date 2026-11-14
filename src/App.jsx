@@ -12,7 +12,19 @@ import {
 } from './data/resume.js'
 
 function scrollToId(id) {
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  document.getElementId(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+}
+
+function SectionHead({ kicker, title, text }) {
+  return (
+    <header className="section-head">
+      <p className="fn">{kicker}</p>
+      <div>
+        <h2>{title}</h2>
+        {text ? <p>{text}</p> : null}
+      </div>
+    </header>
+  )
 }
 
 export default function App() {
@@ -70,11 +82,13 @@ export default function App() {
   return (
     <div className="desk">
       <div className="desk__glow" aria-hidden="true" />
+      <div className="desk__grid" aria-hidden="true" />
+
       <header className="topbar">
-        <div className="brand">
+        <a className="brand" href="#home" onClick={() => setActive('home')}>
           <span className="brand__led" />
           <span>SK.KEYS</span>
-        </div>
+        </a>
         <nav className="nav-row" aria-label="Primary">
           {navKeys.map((item) => (
             <Keycap
@@ -83,6 +97,7 @@ export default function App() {
               sub={item.sub}
               accent={active === item.id ? 'amber' : undefined}
               pressed={active === item.id}
+              current={active === item.id}
               onClick={() => {
                 setActive(item.id)
                 scrollToId(item.id)
@@ -92,69 +107,79 @@ export default function App() {
         </nav>
       </header>
 
-      <main className="chassis">
-        <section className="plate" id="home">
-          <p className="kicker">Mechanical layout · Frontend engineer</p>
-          <h1 className="display" aria-label={profile.name}>
-            <span className="display__typed">{nameTyped}</span>
-            <span className={`cursor ${nameDone ? 'cursor--dim' : ''}`} aria-hidden="true">
-              ▍
-            </span>
-          </h1>
-          <p className="role-line">
-            {roleTyped || '\u00a0'}
-            {nameDone ? <span className="cursor cursor--small">▍</span> : null}
-          </p>
-          <p className="lede">{profile.summary}</p>
-          <div className="hero-keys">
-            <Keycap
-              legend="Enter"
-              sub="Work"
-              wide
-              accent="amber"
-              onClick={() => scrollToId('experience')}
-            />
-            <Keycap
-              legend="@"
-              sub="Mail"
-              href={`mailto:${profile.email}`}
-            />
-            <Keycap legend="in" sub="LinkedIn" href={profile.linkedin} />
-            <Keycap legend="gh" sub="GitHub" href={profile.github} />
+      <main>
+        <section className="hero" id="home">
+          <div className="hero__copy">
+            <p className="kicker">
+              <span className="status-dot" />
+              Open to frontend roles · {profile.location}
+            </p>
+            <h1 className="display" aria-label={profile.name}>
+              <span className="display__typed">{nameTyped}</span>
+            <span className={`cursor ${nameDone ? 'cursor--dim' : ''}`} aria-hidden="true" />
+            </h1>
+            <p className="role-line">
+              {roleTyped || '\u00a0'}
+              {nameDone ? <span className="cursor cursor--small" /> : null}
+            </p>
+            <p className="lede">{profile.summary}</p>
+            <div className="hero-keys">
+              <Keycap
+                legend="Enter"
+                sub="Work"
+                wide
+                accent="amber"
+                onClick={() => scrollToId('experience')}
+              />
+              <Keycap legend="@" sub="Mail" href={`mailto:${profile.email}`} />
+              <Keycap legend="in" sub="LinkedIn" href={profile.linkedin} />
+              <Keycap legend="gh" sub="GitHub" href={profile.github} />
+            </div>
           </div>
-          <p className="hint">Type on your keyboard — matching skill keys light up.</p>
+
+          <aside className="spec" aria-label="Profile snapshot">
+            <p className="spec__label">Spec sheet</p>
+            <dl>
+              <div>
+                <dt>Role</dt>
+                <dd>{profile.role}</dd>
+              </div>
+              <div>
+                <dt>Based</dt>
+                <dd>{profile.location}</dd>
+              </div>
+              <div>
+                <dt>Focus</dt>
+                <dd>React, TypeScript, Angular</dd>
+              </div>
+              <div>
+                <dt>Experience</dt>
+                <dd>Nearly 4 years</dd>
+              </div>
+              <div>
+                <dt>Ships</dt>
+                <dd>UI systems, REST apps, performance</dd>
+              </div>
+            </dl>
+          </aside>
         </section>
 
-        <section className="plate" id="about">
-          <h2>
-            <span className="fn">F1</span> About
-          </h2>
+        <section className="section" id="about">
+          <SectionHead
+            kicker="F1"
+            title="About"
+            text="Frontend work in production, and side projects when I want to learn something properly."
+          />
           <div className="about-grid">
             <article className="card">
-              <h3>About Me</h3>
+              <h3>About me</h3>
               <p>
-                I'm a Frontend Engineer with nearly 4 years of experience
-                building responsive, user-friendly web applications using
-                React, Angular, and TypeScript. I've worked on production
-                applications, REST API integrations, reusable components,
-                and performance improvements. Outside work, I build personal
-                projects to explore new technologies and strengthen my skills.
+                I&apos;m a Frontend Engineer with nearly 4 years of experience building responsive,
+                user-friendly web applications using React, Angular, and TypeScript. I&apos;ve worked on
+                production applications, REST API integrations, reusable components, and performance
+                improvements. Outside work, I build personal projects to explore new technologies and
+                strengthen my skills.
               </p>
-
-              <ul className="stat-row">
-                <li>
-                  <strong>~4 yrs</strong>
-                  <span>Experience</span>
-                </li>
-                <li>
-                  <strong>React</strong>
-                  <span>Primary stack</span>
-                </li>
-                <li>
-                  <strong>2+</strong>
-                  <span>Personal projects</span>
-                </li>
-              </ul>
             </article>
             <article className="card">
               <h3>Education</h3>
@@ -173,38 +198,47 @@ export default function App() {
           </div>
         </section>
 
-        <section className="plate" id="experience">
-          <h2>
-            <span className="fn">F2</span> Experience
-          </h2>
-          <div className="jobs">
+        <section className="section" id="experience">
+          <SectionHead
+            kicker="F2"
+            title="Experience"
+            text="Product UI, performance, and the messy parts of shipping real applications."
+          />
+          <ol className="timeline">
             {experience.map((job) => (
-              <article className={`job key-card key-card--${job.accent}`} key={job.company}>
-                <header>
-                  <p className="job__role">{job.role}</p>
-                  <h3>{job.company}</h3>
-                  <p className="job__meta">
-                    {job.location} · {job.dates}
-                  </p>
-                </header>
-                <ul>
-                  {job.points.map((point) => (
-                    <li key={point}>{point}</li>
-                  ))}
-                </ul>
-              </article>
+              <li key={job.company}>
+                <article className={`job job--${job.accent}`}>
+                  <header>
+                    <p className="job__role">{job.role}</p>
+                    <h3>{job.company}</h3>
+                    <p className="job__meta">
+                      {job.location} · {job.dates}
+                    </p>
+                  </header>
+                  <ul>
+                    {job.points.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                </article>
+              </li>
             ))}
-          </div>
+          </ol>
         </section>
 
-        <section className="plate" id="products">
-          <h2>
-            <span className="fn">F3</span> Product experience
-          </h2>
-          <div className="products">
-            {products.map((product) => (
-              <article className="key-card" key={product.name}>
-                <p className="tag">{product.tag}</p>
+        <section className="section" id="products">
+          <SectionHead
+            kicker="F3"
+            title="Product experience"
+            text="Order products I have worked on at WizCommerce."
+          />
+          <div className="work-grid">
+            {products.map((product, index) => (
+              <article className="work-card" key={product.name}>
+                <div className="work-card__top">
+                  <span className="idx">{String(index + 1).padStart(2, '0')}</span>
+                  <p className="tag">{product.tag}</p>
+                </div>
                 <h3>{product.name}</h3>
                 <p className="stack">{product.stack}</p>
                 <ul>
@@ -216,37 +250,42 @@ export default function App() {
             ))}
           </div>
         </section>
-        <section className="plate" id="projects">
-          <h2>
-            <span className="fn">F4</span> Personal projects
-          </h2>
-          <div className="products">
-            {projects.map((product) => (
-              <article className="key-card" key={product.name}>
-                <p className="tag">{product.tag}</p>
-                <h3>{product.name}</h3>
-                <p className="stack">{product.stack}</p>
-                <a
-                  href={product.live_demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Live Demo
+
+        <section className="section" id="projects">
+          <SectionHead
+            kicker="F4"
+            title="Personal projects"
+            text="Things I built to practice product UI, state, and the details around them."
+          />
+          <div className="work-grid">
+            {projects.map((project, index) => (
+              <article className="work-card" key={project.name}>
+                <div className="work-card__top">
+                  <span className="idx">{String(index + 1).padStart(2, '0')}</span>
+                  <p className="tag">{project.tag}</p>
+                </div>
+                <h3>{project.name}</h3>
+                <p className="stack">{project.stack}</p>
+                <ul>
+                  {project.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+                <a className="text-link" href={project.live_demo} target="_blank" rel="noreferrer">
+                  Live demo
+                  <span aria-hidden="true">↗</span>
                 </a>
-                <ul>
-                  {product.points.map((point) => (
-                    <li key={point}>{point}</li>
-                  ))}
-                </ul>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="plate" id="skills">
-          <h2>
-            <span className="fn">F5</span> Skill keyboard
-          </h2>
+        <section className="section" id="skills">
+          <SectionHead
+            kicker="F5"
+            title="Skill keyboard"
+            text="Type any letter. Keys that match light up."
+          />
           <div className="keyboard" role="list">
             {skillRows.map((row, rowIndex) => (
               <div className="keyboard__row" key={rowIndex}>
@@ -275,13 +314,12 @@ export default function App() {
           </div>
         </section>
 
-        <section className="plate" id="contact">
-          <h2>
-            <span className="fn">F6</span> Get in touch
-          </h2>
-          <p className="lede lede--tight">
-            Open to frontend roles and product-minded UI work. Hit a key below.
-          </p>
+        <section className="section section--contact" id="contact">
+          <SectionHead
+            kicker="F6"
+            title="Get in touch"
+            text="Open to frontend roles and product-minded UI work."
+          />
           <div className="contact-keys">
             <Keycap legend="Mail" sub={profile.email} wide href={`mailto:${profile.email}`} />
             <Keycap legend="Tel" sub={profile.phone} wide href={`tel:${profile.phone.replace(/\s/g, '')}`} />
@@ -293,8 +331,8 @@ export default function App() {
       </main>
 
       <footer className="foot">
-        <span>Caps Lock off · {profile.name}</span>
-        <span>Built with React · keyboard chassis UI</span>
+        <span>{profile.name}</span>
+        <span>React · keyboard chassis</span>
       </footer>
     </div>
   )

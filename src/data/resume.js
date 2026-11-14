@@ -15,7 +15,7 @@ export const navKeys = [
   { id: 'about', legend: 'F1', sub: 'About' },
   { id: 'experience', legend: 'F2', sub: 'Work' },
   { id: 'products', legend: 'F3', sub: 'Apps' },
-  { id: 'projects', legend: 'F4', sub: 'projects' },
+  { id: 'projects', legend: 'F4', sub: 'Projects' },
   { id: 'skills', legend: 'F5', sub: 'Keys' },
   { id: 'contact', legend: 'F6', sub: 'Hire' },
 ]
